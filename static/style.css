@@ -33,9 +33,20 @@ body {
   margin-right: 12px;
 }
 
-.game-table {
-  border-collapse: collapse;
-  background-color: rgba(15, 14, 71, 0.3);
+@media screen and (min-width: 768px) {
+  .game-table {
+    border-collapse: collapse;
+    background-color: rgba(15, 14, 71, 0.3);
+  }
+  .game-list {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .game-table {
+    display: none;
+  }
 }
 
 .game-table td {
