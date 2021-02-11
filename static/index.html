@@ -15,8 +15,17 @@
     <title>birthstone</title>
     <link rel="stylesheet" type="text/css" href="reset.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <script>
+      // chrono がランタイムで落ちるから JS 側から渡す
+      // YYYY-M-D
+      function getISOString() {
+        const date = new Date();
+        return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+      }
+    </script>
     <script type="module">
       import init from "./wasm.js";
+
       init();
     </script>
   </head>
