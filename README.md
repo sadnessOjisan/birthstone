@@ -4,16 +4,17 @@
 
 ## dev
 
-### add game data
+### ゲーム情報の追加
 
 data.yaml に追加
 
-### develop app
+### 機能追加
 
 ```sh
-cargo install
+$ cargo install
 
-wasm-pack build --target web --out-name wasm --out-dir ./static
+$ wasm-pack build --target web --out-name wasm --out-dir ./static
 
-miniserve ./static --index index.html
+# serve server. なんでも良い
+$ miniserve ./static --index index.html
 ```
