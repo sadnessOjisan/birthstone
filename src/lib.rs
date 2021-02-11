@@ -225,9 +225,9 @@ impl Component for Model {
               <p class="description">{"ソーシャルゲームのリリース日の一覧です。これらの日に近いタイミングで開始すると"}
               <b>{"たくさんアイテムがもらえたり、ガチャを引ける"}</b>
               {"と思います。"}</p>
-            //   <p class="description">{"当サイトはオープンソースプロジェクトとして運営しています。追加したいゲームがあれば、"}
-            //   <a href="https://github.com/sadnessOjisan/birthstone" class="github">{"こちら"}</a>
-            //  {"から追加できます。開発ロードマップの確認や機能要望もGitHubからお願いします。"}</p>
+              <p class="description">{"当サイトはオープンソースプロジェクトとして運営しています。追加したいゲームがあれば、"}
+              <a href="https://github.com/sadnessOjisan/birthstone" class="github">{"こちら"}</a>
+             {"から追加できます。開発ロードマップの確認や機能要望もGitHubからお願いします。"}</p>
               <h2 class="month">{self.selected_month}{"月"}</h2>
               <div class="button-row">
                 <button onclick=self.link.callback(|_| Msg::PrevMonth) class="prev month-button">{"先月"}</button>
