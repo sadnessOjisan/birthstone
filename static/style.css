@@ -1,11 +1,12 @@
 html {
-  background-color: white;
+  background-color: #151618;
 }
 
 body {
   max-width: 1024px;
   margin: 0 auto;
   padding: 12px;
+  color: #a9abbc;
 }
 
 .title {
@@ -26,11 +27,69 @@ body {
 }
 
 .month-button {
-  height: 30px;
-  width: 60px;
+  width: 100px;
+  height: 40px;
   text-align: center;
-  border: solid 1px gray;
-  margin-right: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #fff;
+}
+
+.prev {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgba(254, 212, 117, 1)),
+    to(rgba(229, 61, 93, 1))
+  );
+  background-image: -webkit-linear-gradient(
+    left,
+    rgba(254, 212, 117, 1) 0%,
+    rgba(229, 61, 93, 1) 100%
+  );
+  background-image: linear-gradient(
+    to right,
+    rgba(254, 212, 117, 1) 0%,
+    rgba(229, 61, 93, 1) 100%
+  );
+}
+
+.next {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#007adf),
+    to(#00ecbc)
+  );
+  background-image: -webkit-linear-gradient(left, #007adf 0%, #00ecbc 100%);
+  background-image: linear-gradient(to right, #007adf 0%, #00ecbc 100%);
+}
+
+.month-button:hover {
+  -webkit-transform: scale(1.04);
+  transform: scale(1.04);
+  color: #fff;
 }
 
 @media screen and (min-width: 768px) {
