@@ -8,6 +8,7 @@ use chrono::*;
 use std::collections::HashMap;
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
+use yew::web_sys;
 
 #[derive(Debug, PartialEq, Serialize, Deserialize, Clone)]
 struct Game {
@@ -26,6 +27,14 @@ struct Model {
     selected_month: u32,
     raw_games: Vec<Game>,
     games: MonthData,
+}
+
+#[wasm_bindgen]
+pub fn greet() {
+    let window: web_sys::Window = web_sys::window().expect("window not available");
+    window
+        .alert_with_message("hello from wasm!")
+        .expect("alert failed");
 }
 
 const CURRENT_YEAR: i32 = 2021; // TODO: 日付ライブラリから取得する
@@ -94,6 +103,7 @@ enum Msg {
 }
 
 fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
+    greet();
     let date = NaiveDate::from_ymd(CURRENT_YEAR, month, 1);
     let calendar = calendarize::calendarize(date);
     let mut m = HashMap::new();
