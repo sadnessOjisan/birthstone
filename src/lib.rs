@@ -6,9 +6,14 @@ extern crate serde_yaml;
 use calendarize;
 use chrono::*;
 use std::collections::HashMap;
+use std::time::SystemTime;
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 use yew::web_sys;
+#[wasm_bindgen]
+extern "C" {
+    fn getISOString() -> String;
+}
 
 #[derive(Debug, PartialEq, Serialize, Deserialize, Clone)]
 struct Game {
@@ -27,14 +32,7 @@ struct Model {
     selected_month: u32,
     raw_games: Vec<Game>,
     games: MonthData,
-}
-
-#[wasm_bindgen]
-pub fn greet() {
-    let window: web_sys::Window = web_sys::window().expect("window not available");
-    window
-        .alert_with_message("hello from wasm!")
-        .expect("alert failed");
+    today: NaiveDate,
 }
 
 const CURRENT_YEAR: i32 = 2021; // TODO: 日付ライブラリから取得する
@@ -81,8 +79,13 @@ impl Model {
     fn render_day(&self, day_games: &MonthDateGames) -> Html {
         match day_games {
             Some(day_games) => {
+                let is_selected_month = self.today.month() == day_games.0 .0;
+                let is_selected_day = self.today.day() == day_games.0 .1;
+                let is_selected = is_selected_day && is_selected_month;
+                log::info!(" self.today.month(){:?}",  self.today.month());
+log::info!(" self.today.day(){:?}",  self.today.day());
                 html! {
-                    <td>
+                    <td class={if is_selected {"selected"} else {""}}>
                     <div class="day">{day_games.0.1}</div>
                     <div class="games">
                     {for day_games.1.iter().map(|game| {html! {<a href={game.url.to_string()}>{game.title.to_string()}</a>}})}
@@ -102,8 +105,12 @@ enum Msg {
     PrevMonth,
 }
 
+#[no_mangle]
+pub fn get_iso() -> String {
+    getISOString()
+}
+
 fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
-    greet();
     let date = NaiveDate::from_ymd(CURRENT_YEAR, month, 1);
     let calendar = calendarize::calendarize(date);
     let mut m = HashMap::new();
@@ -169,6 +176,12 @@ impl Component for Model {
     type Properties = ();
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
+        let iso = get_iso(); // 宙に浮いた参照を防ぐ
+        let current_date = iso.as_str();
+log::info!(" iso{:?}",  iso);
+        let parse_from_str = NaiveDate::parse_from_str;
+        let today =
+            parse_from_str(current_date, "%Y-%m-%d").unwrap_or(NaiveDate::from_ymd(2021, 1, 1));
         let s = include_str!("./data.yaml");
         let games: Vec<Game> = serde_yaml::from_str(s).unwrap();
         let game_and_date = create_games_date(&games, CURRENT_MONTH);
@@ -177,6 +190,7 @@ impl Component for Model {
             games: game_and_date,
             selected_month: CURRENT_MONTH,
             raw_games: games,
+            today: today,
         }
     }
 
