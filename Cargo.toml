@@ -8,5 +8,10 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-yew = "0.17"
-wasm-bindgen = "0.2"
+calendarize = "1.0.0"
+chrono = {version="0.4.19", features = ["serde"]}
+serde = "1.0.123"
+serde_derive = "1.0.123"
+serde_yaml = "0.8.16"
+wasm-bindgen = "0.2.70"
+yew = "0.17.4"
