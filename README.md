@@ -2,19 +2,25 @@
 
 ソシャゲの周年記念一覧。この日付近に始めるとたくさん石を貰えるよ
 
-## dev
+## ゲーム情報提供・修正について
 
-### ゲーム情報の追加
+お気軽に PR をいただければ 🙇‍♀️🙇‍♀️🙇‍♀️
 
-data.yaml に追加
+### 情報提供
 
-### 機能追加
+src/data.yaml へ追加をお願いします 🙇‍♀️
 
-```sh
+### Dev
+
+```
 $ cargo install
 
 $ wasm-pack build --target web --out-name wasm --out-dir ./static
 
-# serve server. なんでも良い
+# static を serve する何かしらのコマンド
 $ miniserve ./static --index index.html
 ```
+
+### 詳しくは
+
+詳しくは[CONTRIBUTING.md](./.github/CONTRIBUTING.md) をご覧ください。
