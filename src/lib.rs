@@ -29,6 +29,33 @@ struct Model {
 }
 
 impl Model {
+    fn render_all_items(&self, all_games: &MonthData) -> Html {
+        let games = all_games.iter().flatten().collect::<Vec<_>>();
+        html! {
+            <div>{for games.iter().map(|game| {
+                html! {self.render_sp_item(game)}
+                })}
+            </div>
+        }
+    }
+
+    fn render_sp_item(&self, game: &MonthDateGames) -> Html {
+        html! {
+            <div>{ match game {
+                Some(game) => html!{
+                    <p>
+                      <span>{game.0.1}{"日"}</span>
+                      <span>{for game.1.iter().map(|g| html!{
+                          <a href={g.url.to_string()}>{g.title.to_string()}</a>
+                      })}</span>
+                    </p>
+                },
+                None => html!{""}
+            }}</div>
+
+        }
+    }
+
     fn render_week(&self, week: &WeekData) -> Html {
         html! {
                   <tr>{for week.iter().map(|day| self.render_day(day))}</tr>
@@ -165,6 +192,7 @@ impl Component for Model {
                 <button onclick=self.link.callback(|_| Msg::SelectMonth(2)) class="next month-button">{"翌月"}</button>
               </div>
               <table class="game-table">{for self.games.iter().map(|x| self.render_week(x))}</table>
+              <table class="game-list">{self.render_all_items(&self.games)}</table>
             </div>
         }
     }
