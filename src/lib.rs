@@ -28,6 +28,10 @@ struct Model {
     games: MonthData,
 }
 
+const START_YEAR:i32 = 2021;
+const START_MONTH:u32 = 2;
+
+
 impl Model {
     fn render_all_items(&self, all_games: &MonthData) -> Html {
         let games = all_games.iter().flatten().collect::<Vec<_>>();
@@ -87,7 +91,7 @@ enum Msg {
 }
 
 fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
-    let date = NaiveDate::from_ymd(2021, month, 1);
+    let date = NaiveDate::from_ymd(START_YEAR, month, 1);
     let calendar = calendarize::calendarize(date);
     let mut m = HashMap::new();
     for week in &calendar {
@@ -132,14 +136,12 @@ fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
                                     Some(data)
                                 }
                                 None => {
-                                    let date: MonthDate = (month, day);
                                     None
                                 }
                             };
                             data
                         }
                         None => {
-                            let date: MonthDate = (month, day);
                             None
                         }
                     };
@@ -159,12 +161,11 @@ impl Component for Model {
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         let s = include_str!("./data.yaml");
         let games: Vec<Game> = serde_yaml::from_str(s).unwrap();
-        let first_month = 1; // TODO: 今の月
-        let game_and_date = create_games_date(&games, first_month);
+        let game_and_date = create_games_date(&games, START_MONTH);
         Self {
             link,
             games: game_and_date,
-            selected_month: first_month,
+            selected_month: START_MONTH,
             raw_games: games,
         }
     }
@@ -172,14 +173,14 @@ impl Component for Model {
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::NextMonth => {
-                let next_month_date = NaiveDate::from_ymd_opt(2020, self.selected_month + 1, 1)
-                    .unwrap_or(NaiveDate::from_ymd(2020 + 1, 1, 1));
+                let next_month_date = NaiveDate::from_ymd_opt(START_YEAR, self.selected_month + 1, 1)
+                    .unwrap_or(NaiveDate::from_ymd(START_YEAR + 1, 1, 1));
                 self.selected_month = next_month_date.month();
                 self.games = create_games_date(&self.raw_games, next_month_date.month());
             }
             Msg::PrevMonth => {
-                let pred_month_date = NaiveDate::from_ymd_opt(2020, self.selected_month - 1, 1)
-                    .unwrap_or(NaiveDate::from_ymd(2020 - 1, 12, 1));
+                let pred_month_date = NaiveDate::from_ymd_opt(START_YEAR, self.selected_month - 1, 1)
+                    .unwrap_or(NaiveDate::from_ymd(START_YEAR - 1, 12, 1));
                 self.selected_month = pred_month_date.month();
                 self.games = create_games_date(&self.raw_games, pred_month_date.month());
             }
