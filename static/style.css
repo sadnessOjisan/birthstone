@@ -9,6 +9,7 @@ body {
   margin: 0 auto;
   padding: 12px;
   color: #a9abbc;
+  line-height: 1.6;
 }
 
 .title {
@@ -23,7 +24,7 @@ body {
 }
 
 .description b {
-  color: rgba(254, 212, 117, 1);
+  color: white;
   font-weight: bold;
 }
 
@@ -46,7 +47,7 @@ body {
 .button-row {
   display: flex;
   justify-content: space-between;
-  margin: 12px 0px;
+  margin: 24px 0px;
 }
 
 .month-button {
@@ -55,7 +56,6 @@ body {
   text-align: center;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.5;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -116,50 +116,90 @@ body {
 }
 
 @media screen and (min-width: 768px) {
+  /* hide sp */
+  .game-list {
+    display: none;
+  }
   .game-table {
     border-radius: 20px;
     box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
     background-color: rgb(37, 40, 44);
   }
-  .game-list {
-    display: none;
+  .game-table td {
+    width: 200px;
+    height: 200px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+  }
+
+  .game-table td:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0;
+  }
+
+  .game-table td a:hover {
+    text-decoration: underline;
+  }
+
+  .game-table td .day {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+
+  .game-table td .games {
+    margin-top: 12px;
   }
 }
 
 @media screen and (max-width: 767px) {
+  .month-button {
+    width: 80px;
+    font-size: 14px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .description {
+    font-size: 16px;
+  }
+  .month {
+    font-size: 20px;
+  }
   .game-table {
     display: none;
   }
-}
 
-.game-table td {
-  width: 200px;
-  height: 200px;
-  padding: 8px;
-  border-radius: 10px;
-  transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
-}
+  .items {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
+    padding: 8px;
+    background-color: rgb(37, 40, 44);
+  }
 
-.game-table td:hover {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0;
-}
+  .item {
+    margin: 24px 0px;
+    display: flex;
+    align-items: center;
+  }
 
-.game-table td a:hover {
-  text-decoration: underline;
-}
+  .item .date {
+    margin-right: 12px;
+  }
 
-.game-table td .day {
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
-}
+  .item .games {
+    display: flex;
+    flex-direction: column;
+  }
 
-.game-table td .games {
-  margin-top: 12px;
+  .item .games li {
+    margin-top: 12px;
+  }
 }
