@@ -82,7 +82,8 @@ impl Model {
 }
 
 enum Msg {
-    SelectMonth(u32),
+    NextMonth,
+    PrevMonth,
 }
 
 fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
@@ -170,9 +171,17 @@ impl Component for Model {
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::SelectMonth(month) => {
-                self.selected_month = month;
-                self.games = create_games_date(&self.raw_games, month);
+            Msg::NextMonth => {
+                let next_month_date = NaiveDate::from_ymd_opt(2020, self.selected_month + 1, 1)
+                    .unwrap_or(NaiveDate::from_ymd(2020 + 1, 1, 1));
+                self.selected_month = next_month_date.month();
+                self.games = create_games_date(&self.raw_games, next_month_date.month());
+            }
+            Msg::PrevMonth => {
+                let pred_month_date = NaiveDate::from_ymd_opt(2020, self.selected_month - 1, 1)
+                    .unwrap_or(NaiveDate::from_ymd(2020 - 1, 12, 1));
+                self.selected_month = pred_month_date.month();
+                self.games = create_games_date(&self.raw_games, pred_month_date.month());
             }
         }
         true
@@ -188,8 +197,8 @@ impl Component for Model {
               <h1 class="title">{"ソシャゲのリリース日一覧"}</h1>
               <h2 class="month">{self.selected_month}{"月"}</h2>
               <div class="button-row">
-                <button onclick=self.link.callback(|_| Msg::SelectMonth(1)) class="prev month-button">{"先月"}</button>
-                <button onclick=self.link.callback(|_| Msg::SelectMonth(2)) class="next month-button">{"翌月"}</button>
+                <button onclick=self.link.callback(|_| Msg::PrevMonth) class="prev month-button">{"先月"}</button>
+                <button onclick=self.link.callback(|_| Msg::NextMonth) class="next month-button">{"翌月"}</button>
               </div>
               <table class="game-table">{for self.games.iter().map(|x| self.render_week(x))}</table>
               <table class="game-list">{self.render_all_items(&self.games)}</table>
