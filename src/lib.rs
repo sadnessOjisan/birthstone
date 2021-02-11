@@ -82,8 +82,8 @@ impl Model {
                 let is_selected_month = self.today.month() == day_games.0 .0;
                 let is_selected_day = self.today.day() == day_games.0 .1;
                 let is_selected = is_selected_day && is_selected_month;
-                log::info!(" self.today.month(){:?}",  self.today.month());
-log::info!(" self.today.day(){:?}",  self.today.day());
+      
+
                 html! {
                     <td class={if is_selected {"selected"} else {""}}>
                     <div class="day">{day_games.0.1}</div>
@@ -177,8 +177,8 @@ impl Component for Model {
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         let iso = get_iso(); // 宙に浮いた参照を防ぐ
+        log::info!("interop check {:?}",  iso);
         let current_date = iso.as_str();
-log::info!(" iso{:?}",  iso);
         let parse_from_str = NaiveDate::parse_from_str;
         let today =
             parse_from_str(current_date, "%Y-%m-%d").unwrap_or(NaiveDate::from_ymd(2021, 1, 1));
