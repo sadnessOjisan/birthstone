@@ -15,11 +15,32 @@ body {
   text-align: center;
   font-size: 32px;
   margin: 36px 0;
+  color: white;
+}
+
+.description {
+  margin: 16px 0px;
+}
+
+.description b {
+  color: rgba(254, 212, 117, 1);
+  font-weight: bold;
+}
+
+.github {
+  color: #007adf;
+}
+
+.github:hover {
+  text-decoration: underline;
 }
 
 .month {
-  font-size: 24px;
+  font-size: 28px;
   text-align: center;
+  color: white;
+  margin-top: 36px;
+  margin-bottom: 12px;
 }
 
 .button-row {
@@ -96,12 +117,9 @@ body {
 
 @media screen and (min-width: 768px) {
   .game-table {
-    border-collapse: collapse;
-    background-color: rgba(15, 14, 71, 0.3);
-    backdrop-filter: blur(40px);
     border-radius: 20px;
-    background: rgba(15, 14, 71, 0.3);
     box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
+    background-color: rgb(37, 40, 44);
   }
   .game-list {
     display: none;
