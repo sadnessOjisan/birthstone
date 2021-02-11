@@ -7,3 +7,7 @@
 お気軽に PR/Issue をいただけると幸いです 🙇‍♀️🙇‍♀️🙇‍♀️
 
 詳しくは [CONTRIBUTING.md](./.github/CONTRIBUTING.md) をご覧ください。
+
+## @誰か
+
+レビュー & アドバイスが欲しいです。
