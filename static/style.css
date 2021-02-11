@@ -1,72 +1,205 @@
 html {
-  background-color: white;
+  background-color: #151618;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif;
 }
 
 body {
   max-width: 1024px;
   margin: 0 auto;
   padding: 12px;
+  color: #a9abbc;
+  line-height: 1.6;
 }
 
 .title {
   text-align: center;
   font-size: 32px;
   margin: 36px 0;
+  color: white;
+}
+
+.description {
+  margin: 16px 0px;
+}
+
+.description b {
+  color: white;
+  font-weight: bold;
+}
+
+.github {
+  color: #007adf;
+}
+
+.github:hover {
+  text-decoration: underline;
 }
 
 .month {
-  font-size: 24px;
+  font-size: 28px;
   text-align: center;
+  color: white;
+  margin-top: 36px;
+  margin-bottom: 12px;
 }
 
 .button-row {
   display: flex;
   justify-content: space-between;
-  margin: 12px 0px;
+  margin: 24px 0px;
 }
 
 .month-button {
-  height: 30px;
-  width: 60px;
+  width: 100px;
+  height: 40px;
   text-align: center;
-  border: solid 1px gray;
-  margin-right: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #fff;
+}
+
+.prev {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgba(254, 212, 117, 1)),
+    to(rgba(229, 61, 93, 1))
+  );
+  background-image: -webkit-linear-gradient(
+    left,
+    rgba(254, 212, 117, 1) 0%,
+    rgba(229, 61, 93, 1) 100%
+  );
+  background-image: linear-gradient(
+    to right,
+    rgba(254, 212, 117, 1) 0%,
+    rgba(229, 61, 93, 1) 100%
+  );
+}
+
+.next {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#007adf),
+    to(#00ecbc)
+  );
+  background-image: -webkit-linear-gradient(left, #007adf 0%, #00ecbc 100%);
+  background-image: linear-gradient(to right, #007adf 0%, #00ecbc 100%);
+}
+
+.month-button:hover {
+  -webkit-transform: scale(1.04);
+  transform: scale(1.04);
+  color: #fff;
 }
 
 @media screen and (min-width: 768px) {
-  .game-table {
-    border-collapse: collapse;
-    background-color: rgba(15, 14, 71, 0.3);
-  }
+  /* hide sp */
   .game-list {
     display: none;
+  }
+  .game-table {
+    border-radius: 20px;
+    box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
+    background-color: rgb(37, 40, 44);
+  }
+  .game-table td {
+    width: 200px;
+    height: 200px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+  }
+
+  .game-table td:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0;
+  }
+
+  .game-table td a:hover {
+    text-decoration: underline;
+  }
+
+  .game-table td .day {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+
+  .game-table td .games {
+    margin-top: 12px;
   }
 }
 
 @media screen and (max-width: 767px) {
+  .month-button {
+    width: 80px;
+    font-size: 14px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .description {
+    font-size: 16px;
+  }
+  .month {
+    font-size: 20px;
+  }
   .game-table {
     display: none;
   }
-}
 
-.game-table td {
-  width: 200px;
-  height: 200px;
-  border: 1px solid gainsboro;
-  padding: 8px;
-}
+  .items {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
+    padding: 8px;
+    background-color: rgb(37, 40, 44);
+  }
 
-.game-table td .day {
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
-}
+  .item {
+    margin: 24px 0px;
+    display: flex;
+    align-items: center;
+  }
 
-.game-table td .games {
-  margin-top: 12px;
+  .item .date {
+    margin-right: 12px;
+  }
+
+  .item .games {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item .games li {
+    margin-top: 12px;
+  }
 }
