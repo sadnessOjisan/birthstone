@@ -1,0 +1,61 @@
+html {
+  background-color: white;
+}
+
+body {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin: 36px 0;
+}
+
+.month {
+  font-size: 24px;
+  text-align: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0px;
+}
+
+.month-button {
+  height: 30px;
+  width: 60px;
+  text-align: center;
+  border: solid 1px gray;
+  margin-right: 12px;
+}
+
+.game-table {
+  border-collapse: collapse;
+  background-color: rgba(15, 14, 71, 0.3);
+}
+
+.game-table td {
+  width: 200px;
+  height: 200px;
+  border: 1px solid gainsboro;
+  padding: 8px;
+}
+
+.game-table td .day {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.game-table td .games {
+  margin-top: 12px;
+}

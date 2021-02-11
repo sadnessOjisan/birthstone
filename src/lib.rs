@@ -31,7 +31,7 @@ struct Model {
 impl Model {
     fn render_week(&self, week: &WeekData) -> Html {
         html! {
-                  <div class="row" style="display: flex">{for week.iter().map(|day| self.render_day(day))}</div>
+                  <tr>{for week.iter().map(|day| self.render_day(day))}</tr>
         }
     }
 
@@ -39,16 +39,16 @@ impl Model {
         match day_games {
             Some(day_games) => {
                 html! {
-                    <div>
-                    <span class="day">{day_games.0.1}{"日"}</span>
+                    <td>
+                    <div class="day">{day_games.0.1}</div>
                     <div class="games">
-                    {for day_games.1.iter().map(|game| {html! {<div>{game.title.to_string()}</div>}})}
+                    {for day_games.1.iter().map(|game| {html! {<a href={game.url.to_string()}>{game.title.to_string()}</a>}})}
                     </div>
-                    </div>
+                    </td>
                 }
             }
             None => {
-                html! {<div>{"aa"}</div>}
+                html! {<td>{"-"}</td>}
             }
         }
     }
@@ -100,7 +100,7 @@ fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
                                         })
                                         .collect::<Vec<_>>();
                                     let date: MonthDate = (month, day);
-                                    let data:(MonthDate, Vec<Game>) = (date, copied_games);
+                                    let data: (MonthDate, Vec<Game>) = (date, copied_games);
                                     Some(data)
                                 }
                                 None => {
@@ -158,10 +158,13 @@ impl Component for Model {
     fn view(&self) -> Html {
         html! {
             <div>
-                <button onclick=self.link.callback(|_| Msg::SelectMonth(1))>{"1月"}</button>
-                <button onclick=self.link.callback(|_| Msg::SelectMonth(2))>{"2月"}</button>
-                {self.selected_month}{"月"}
-                {for self.games.iter().map(|x| self.render_week(x))}
+              <h1 class="title">{"ソシャゲのリリース日一覧"}</h1>
+              <h2 class="month">{self.selected_month}{"月"}</h2>
+              <div class="button-row">
+                <button onclick=self.link.callback(|_| Msg::SelectMonth(1)) class="prev month-button">{"先月"}</button>
+                <button onclick=self.link.callback(|_| Msg::SelectMonth(2)) class="next month-button">{"翌月"}</button>
+              </div>
+              <table class="game-table">{for self.games.iter().map(|x| self.render_week(x))}</table>
             </div>
         }
     }
