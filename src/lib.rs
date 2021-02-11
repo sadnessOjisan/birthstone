@@ -107,7 +107,7 @@ fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
                 .collect();
             match day {
                 0 => {
-                    log::info!("{:?}", day);
+                    log::error!("unexpected date: {:?}", day);
                     m.entry((month, *day)).or_insert(None);
                 }
                 _ => {
