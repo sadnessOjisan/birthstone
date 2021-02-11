@@ -107,6 +107,7 @@ fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
                 .collect();
             match day {
                 0 => {
+                    log::error!("unexpected date: {:?}", day);
                     m.entry((month, *day)).or_insert(None);
                 }
                 _ => {
@@ -221,5 +222,6 @@ impl Component for Model {
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
+    wasm_logger::init(wasm_logger::Config::default());
     App::<Model>::new().mount_to_body();
 }
