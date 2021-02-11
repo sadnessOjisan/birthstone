@@ -28,6 +28,9 @@ struct Model {
     games: MonthData,
 }
 
+const CURRENT_YEAR:i32 = 2021; // TODO: 日付ライブラリから取得する
+const CURRENT_MONTH:u32 = 2; // TODO: 日付ライブラリから取得する
+
 impl Model {
     fn render_all_items(&self, all_games: &MonthData) -> Html {
         let games = all_games.iter().flatten().collect::<Vec<_>>();
@@ -82,11 +85,12 @@ impl Model {
 }
 
 enum Msg {
-    SelectMonth(u32),
+    NextMonth,
+    PrevMonth,
 }
 
 fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
-    let date = NaiveDate::from_ymd(2021, month, 1);
+    let date = NaiveDate::from_ymd(CURRENT_YEAR, month, 1);
     let calendar = calendarize::calendarize(date);
     let mut m = HashMap::new();
     for week in &calendar {
@@ -131,14 +135,12 @@ fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
                                     Some(data)
                                 }
                                 None => {
-                                    let date: MonthDate = (month, day);
                                     None
                                 }
                             };
                             data
                         }
                         None => {
-                            let date: MonthDate = (month, day);
                             None
                         }
                     };
@@ -158,21 +160,28 @@ impl Component for Model {
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         let s = include_str!("./data.yaml");
         let games: Vec<Game> = serde_yaml::from_str(s).unwrap();
-        let first_month = 1; // TODO: 今の月
-        let game_and_date = create_games_date(&games, first_month);
+        let game_and_date = create_games_date(&games, CURRENT_MONTH);
         Self {
             link,
             games: game_and_date,
-            selected_month: first_month,
+            selected_month: CURRENT_MONTH,
             raw_games: games,
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::SelectMonth(month) => {
-                self.selected_month = month;
-                self.games = create_games_date(&self.raw_games, month);
+            Msg::NextMonth => {
+                let next_month_date = NaiveDate::from_ymd_opt(CURRENT_YEAR, self.selected_month + 1, 1)
+                    .unwrap_or(NaiveDate::from_ymd(CURRENT_YEAR + 1, 1, 1));
+                self.selected_month = next_month_date.month();
+                self.games = create_games_date(&self.raw_games, next_month_date.month());
+            }
+            Msg::PrevMonth => {
+                let pred_month_date = NaiveDate::from_ymd_opt(CURRENT_YEAR, self.selected_month - 1, 1)
+                    .unwrap_or(NaiveDate::from_ymd(CURRENT_YEAR - 1, 12, 1));
+                self.selected_month = pred_month_date.month();
+                self.games = create_games_date(&self.raw_games, pred_month_date.month());
             }
         }
         true
@@ -188,8 +197,8 @@ impl Component for Model {
               <h1 class="title">{"ソシャゲのリリース日一覧"}</h1>
               <h2 class="month">{self.selected_month}{"月"}</h2>
               <div class="button-row">
-                <button onclick=self.link.callback(|_| Msg::SelectMonth(1)) class="prev month-button">{"先月"}</button>
-                <button onclick=self.link.callback(|_| Msg::SelectMonth(2)) class="next month-button">{"翌月"}</button>
+                <button onclick=self.link.callback(|_| Msg::PrevMonth) class="prev month-button">{"先月"}</button>
+                <button onclick=self.link.callback(|_| Msg::NextMonth) class="next month-button">{"翌月"}</button>
               </div>
               <table class="game-table">{for self.games.iter().map(|x| self.render_week(x))}</table>
               <table class="game-list">{self.render_all_items(&self.games)}</table>
