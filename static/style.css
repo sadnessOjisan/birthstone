@@ -1,5 +1,7 @@
 html {
   background-color: #151618;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif;
 }
 
 body {
@@ -96,6 +98,10 @@ body {
   .game-table {
     border-collapse: collapse;
     background-color: rgba(15, 14, 71, 0.3);
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+    background: rgba(15, 14, 71, 0.3);
+    box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
   }
   .game-list {
     display: none;
@@ -111,8 +117,18 @@ body {
 .game-table td {
   width: 200px;
   height: 200px;
-  border: 1px solid gainsboro;
   padding: 8px;
+  border-radius: 10px;
+  transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+}
+
+.game-table td:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0;
+}
+
+.game-table td a:hover {
+  text-decoration: underline;
 }
 
 .game-table td .day {
