@@ -6,10 +6,9 @@ extern crate serde_yaml;
 use calendarize;
 use chrono::*;
 use std::collections::HashMap;
-use std::time::SystemTime;
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
-use yew::web_sys;
+
 #[wasm_bindgen]
 extern "C" {
     fn getISOString() -> String;
@@ -58,7 +57,7 @@ impl Model {
                       <ul class="games">
                      {for game.1.iter().map(|g| html!{
                             <li>
-                              <a href={g.url.to_string()}>{g.title.to_string()}</a>
+                              <a href={g.url.to_string()} target="_blank" rel="noreferrer">{g.title.to_string()}</a>
                              </li>
                          })}
                       </ul>
@@ -82,13 +81,12 @@ impl Model {
                 let is_selected_month = self.today.month() == day_games.0 .0;
                 let is_selected_day = self.today.day() == day_games.0 .1;
                 let is_selected = is_selected_day && is_selected_month;
-      
 
                 html! {
                     <td class={if is_selected {"selected"} else {""}}>
                     <div class="day">{day_games.0.1}</div>
                     <div class="games">
-                    {for day_games.1.iter().map(|game| {html! {<a href={game.url.to_string()}>{game.title.to_string()}</a>}})}
+                    {for day_games.1.iter().map(|game| {html! {<a href={game.url.to_string()} target="_blank" rel="noreferrer">{game.title.to_string()}</a>}})}
                     </div>
                     </td>
                 }
@@ -177,7 +175,7 @@ impl Component for Model {
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         let iso = get_iso(); // 宙に浮いた参照を防ぐ
-        log::info!("interop check {:?}",  iso);
+        log::info!("interop check {:?}", iso);
         let current_date = iso.as_str();
         let parse_from_str = NaiveDate::parse_from_str;
         let today =
@@ -226,7 +224,7 @@ impl Component for Model {
               <b>{"たくさんアイテムがもらえたり、ガチャを引ける"}</b>
               {"と思います。"}</p>
               <p class="description">{"当サイトはオープンソースプロジェクトとして運営しています。追加したいゲームがあれば、"}
-              <a href="https://github.com/sadnessOjisan/birthstone" class="github">{"こちら"}</a>
+              <a href="https://github.com/sadnessOjisan/birthstone" class="github" target="_blank" rel="noreferrer">{"こちら"}</a>
              {"から追加できます。開発ロードマップの確認や機能要望もGitHubからお願いします。"}</p>
               <h2 class="month">{self.selected_month}{"月"}</h2>
               <div class="button-row">
