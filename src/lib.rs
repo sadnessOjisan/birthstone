@@ -6,10 +6,9 @@ extern crate serde_yaml;
 use calendarize;
 use chrono::*;
 use std::collections::HashMap;
-use std::time::SystemTime;
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
-use yew::web_sys;
+
 #[wasm_bindgen]
 extern "C" {
     fn getISOString() -> String;
@@ -82,7 +81,6 @@ impl Model {
                 let is_selected_month = self.today.month() == day_games.0 .0;
                 let is_selected_day = self.today.day() == day_games.0 .1;
                 let is_selected = is_selected_day && is_selected_month;
-      
 
                 html! {
                     <td class={if is_selected {"selected"} else {""}}>
@@ -177,7 +175,7 @@ impl Component for Model {
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         let iso = get_iso(); // 宙に浮いた参照を防ぐ
-        log::info!("interop check {:?}",  iso);
+        log::info!("interop check {:?}", iso);
         let current_date = iso.as_str();
         let parse_from_str = NaiveDate::parse_from_str;
         let today =
