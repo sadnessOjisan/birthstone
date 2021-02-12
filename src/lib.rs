@@ -58,7 +58,7 @@ impl Model {
                       <ul class="games">
                      {for game.1.iter().map(|g| html!{
                             <li>
-                              <a href={g.url.to_string()}>{g.title.to_string()}</a>
+                              <a href={g.url.to_string()} target="_blank" rel="noreferrer">{g.title.to_string()}</a>
                              </li>
                          })}
                       </ul>
@@ -88,7 +88,7 @@ impl Model {
                     <td class={if is_selected {"selected"} else {""}}>
                     <div class="day">{day_games.0.1}</div>
                     <div class="games">
-                    {for day_games.1.iter().map(|game| {html! {<a href={game.url.to_string()}>{game.title.to_string()}</a>}})}
+                    {for day_games.1.iter().map(|game| {html! {<a href={game.url.to_string()} target="_blank" rel="noreferrer">{game.title.to_string()}</a>}})}
                     </div>
                     </td>
                 }
@@ -226,7 +226,7 @@ impl Component for Model {
               <b>{"たくさんアイテムがもらえたり、ガチャを引ける"}</b>
               {"と思います。"}</p>
               <p class="description">{"当サイトはオープンソースプロジェクトとして運営しています。追加したいゲームがあれば、"}
-              <a href="https://github.com/sadnessOjisan/birthstone" class="github">{"こちら"}</a>
+              <a href="https://github.com/sadnessOjisan/birthstone" class="github" target="_blank" rel="noreferrer">{"こちら"}</a>
              {"から追加できます。開発ロードマップの確認や機能要望もGitHubからお願いします。"}</p>
               <h2 class="month">{self.selected_month}{"月"}</h2>
               <div class="button-row">
