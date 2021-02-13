@@ -103,11 +103,6 @@ enum Msg {
     PrevMonth,
 }
 
-#[no_mangle]
-pub fn get_iso() -> String {
-    getISOString()
-}
-
 fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
     let date = NaiveDate::from_ymd(CURRENT_YEAR, month, 1);
     let calendar = calendarize::calendarize(date);
@@ -117,7 +112,6 @@ fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
             let filterd_games: Vec<Game> = games
                 .iter()
                 .filter(|&game| game.published.month() == month && game.published.day() == *day)
-                .map(|game| game)
                 .cloned()
                 .collect();
             match day {
@@ -174,7 +168,7 @@ impl Component for Model {
     type Properties = ();
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let iso = get_iso(); // 宙に浮いた参照を防ぐ
+        let iso = getISOString(); // 宙に浮いた参照を防ぐ
         log::info!("interop check {:?}", iso);
         let current_date = iso.as_str();
         let parse_from_str = NaiveDate::parse_from_str;
