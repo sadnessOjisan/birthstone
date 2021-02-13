@@ -112,7 +112,6 @@ fn create_games_date(games: &Vec<Game>, month: u32) -> MonthData {
             let filterd_games: Vec<Game> = games
                 .iter()
                 .filter(|&game| game.published.month() == month && game.published.day() == *day)
-                .map(|game| game)
                 .cloned()
                 .collect();
             match day {
