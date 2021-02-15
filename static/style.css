@@ -2,6 +2,7 @@ html {
   background-color: #151618;
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
     "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif;
+  touch-action: manipulation;
 }
 
 body {
