@@ -1,0 +1,12 @@
+{
+  "start_url": "https://birthstone.web.app/",
+  "name": "birthstone",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
