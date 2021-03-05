@@ -1,7 +1,7 @@
 {
   "theme_color": "#f2f59d",
   "background_color": "#f2f59d",
-  "display": "browser",
+  "display": "standalone",
   "scope": "/",
   "start_url": "https://birthstone.web.app/",
   "name": "birthstone",
