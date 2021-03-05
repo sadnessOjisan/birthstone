@@ -35,7 +35,7 @@ struct Model {
 }
 
 const CURRENT_YEAR: i32 = 2021; // TODO: 日付ライブラリから取得する
-const CURRENT_MONTH: u32 = 2; // TODO: 日付ライブラリから取得する
+const CURRENT_MONTH: u32 = 3; // TODO: 日付ライブラリから取得する
 
 impl Model {
     fn render_all_items(&self, all_games: &MonthData) -> Html {
