@@ -12,11 +12,13 @@
       property="og:description"
       content="ソシャゲの過去リリース日を一覧できるカレンダーです。周年アイテムをたくさん貰って、たくさんガチャを引いて、たくさんリセマラしよう。"
     />
+
     <meta name="twitter:card" content="summary" />
     <link rel="shortcut icon" href="favicon.ico" />
     <title>birthstone</title>
     <link rel="stylesheet" type="text/css" href="reset.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
     <script>
       // chrono がランタイムで落ちるから JS 側から渡す
       // YYYY-M-D
@@ -27,8 +29,24 @@
     </script>
     <script type="module">
       import init from "./wasm.js";
-
       init();
+    </script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(function (registration) {
+            // 登録成功
+            console.log(
+              "ServiceWorker の登録に成功しました。スコープ: ",
+              registration.scope
+            );
+          })
+          .catch(function (err) {
+            // 登録失敗
+            console.log("ServiceWorker の登録に失敗しました。", err);
+          });
+      }
     </script>
   </head>
   <body>
