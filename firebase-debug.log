@@ -1,0 +1,77 @@
+[debug] [2021-04-24T20:19:59.596Z] ----------------------------------------------------------------------
+[debug] [2021-04-24T20:19:59.597Z] Command:       /Users/ideyuta/.nvm/versions/node/v12.16.2/bin/node /Users/ideyuta/.nvm/versions/node/v12.16.2/bin/firebase deploy --only functions
+[debug] [2021-04-24T20:19:59.597Z] CLI Version:   8.1.1
+[debug] [2021-04-24T20:19:59.597Z] Platform:      darwin
+[debug] [2021-04-24T20:19:59.597Z] Node Version:  v12.16.2
+[debug] [2021-04-24T20:19:59.598Z] Time:          Sun Apr 25 2021 05:19:59 GMT+0900 (Japan Standard Time)
+[debug] [2021-04-24T20:19:59.598Z] ----------------------------------------------------------------------
+[debug] [2021-04-24T20:19:59.598Z] 
+[debug] [2021-04-24T20:19:59.604Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-24T20:19:59.604Z] > authorizing via signed-in user
+[debug] [2021-04-24T20:19:59.604Z] [iam] checking project birthstone-b73d7 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-04-24T20:19:59.606Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/birthstone-b73d7:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-04-24T20:20:00.306Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=567","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T20:20:00.308Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/birthstone-b73d7/serviceAccounts/birthstone-b73d7@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-04-24T20:20:01.088Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'birthstone-b73d7'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2021-04-24T20:20:04.810Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0",
+    "typescript": "^3.2.2"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled...
+[debug] [2021-04-24T20:20:05.174Z] [functions] runtime dependency check dates: warning: 2020-05-21T00:00:00.000Z error: 2020-07-09T00:00:00.000Z
+[warn] 
+[warn] ⚠  functions: The Node.js 8 runtime is deprecated and will be decommissioned on 2020-12-05. For more information, see: https://firebase.google.com/support/faq#functions-runtime
+[warn] 
+[debug] [2021-04-24T20:20:05.176Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/birthstone-b73d7/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-04-24T20:20:05.177Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/birthstone-b73d7/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-04-24T20:20:06.134Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T20:20:06.360Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled
+[debug] [2021-04-24T20:20:06.362Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/birthstone-b73d7/adminSdkConfig  
+ 
+[debug] [2021-04-24T20:20:07.170Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2021-04-24T20:20:07.172Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/birthstone-b73d7/configs  
+ 
+[debug] [2021-04-24T20:20:08.140Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:08 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (57.1 KB) for uploading
+[debug] [2021-04-24T20:20:08.253Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/birthstone-b73d7/locations/-/functions  
+ 
+[debug] [2021-04-24T20:20:09.190Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:09 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T20:20:09.192Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2021-04-24T20:20:09.193Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/birthstone-b73d7:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2021-04-24T20:20:09.894Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 20:20:09 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=570","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T20:20:09.894Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2021-04-24T20:20:09.895Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/birthstone-b73d7/locations/us-central1/functions:generateUploadUrl  
+ 
