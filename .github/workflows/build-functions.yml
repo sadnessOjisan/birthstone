@@ -12,7 +12,7 @@ jobs:
       - name: Install npm packages
         working-directory: ./functions
         run: |
-          yarn install
+          npm install
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
