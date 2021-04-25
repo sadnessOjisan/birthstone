@@ -9,5 +9,6 @@ export const helloWorld = functions.https.onRequest((request, response) => {
 });
 
 export const helloWorld2 = functions.https.onRequest((request, response) => {
+  console.log(yaml);
   response.send("Hello from Firebase!");
 });
