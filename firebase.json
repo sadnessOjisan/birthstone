@@ -3,5 +3,8 @@
     "site": "birthstone",
     "public": "static",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  },
+  "functions": {
+    "predeploy": "cp data.yaml functions/src/data.yaml && npm --prefix \"$RESOURCE_DIR\" run build"
   }
 }
