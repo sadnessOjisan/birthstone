@@ -4,7 +4,7 @@
   "description": "ソシャゲの周年記念一覧。この日付近に始めるとたくさん石を貰えるよ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "next build && next export"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,13 @@
   },
   "homepage": "https://github.com/sadnessOjisan/birthstone#readme",
   "devDependencies": {
-    "firebase-tools": "^9.18.0"
+    "@types/react": "^17.0.24",
+    "firebase-tools": "^9.18.0",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "next": "^11.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
