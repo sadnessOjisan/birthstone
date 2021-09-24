@@ -13,15 +13,22 @@ const Root: VFC<Props> = (props) => {
 export default Root;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const data = await fetch(
+  const res = await fetch(
     "https://us-central1-birthstone-b73d7.cloudfunctions.net/getData"
   );
 
-  const parsed = schema.parse(data);
+  const data = await res.json();
 
-  return {
-    props: {
-      data: parsed,
-    },
-  };
+  try {
+    const parsed = schema.parse(data);
+
+    return {
+      props: {
+        data: parsed,
+      },
+    };
+  } catch (e) {
+    console.error(data);
+    console.error(e);
+  }
 };
