@@ -9,13 +9,37 @@ type Props = {
 const styles = {
   wrapper: css({
     padding: "4px",
+    width: 100,
+    height: 40,
+    fontSize: "1.6rem",
+    cursor: "pointer",
+    textAlign: "center",
+    color: "#ffffff",
+    borderRadius: "0.8rem",
+    transition: "all 0.3s",
+    borderColor: "#151618",
+    "&:hover": {
+      transform: "scale(1.04)",
+    },
     variants: {
       color: {
         cool: {
-          backgroundColor: "blueviolet",
+          backgroundImage: `-webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#007adf),
+            to(#00ecbc)
+          )`,
         },
         hot: {
-          backgroundColor: "red",
+          backgroundImage: `-webkit-gradient(
+          linear,
+          left top,
+          right top,
+          from(rgba(254, 212, 117, 1)),
+          to(rgba(229, 61, 93, 1))
+        )`,
         },
       },
     },

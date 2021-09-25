@@ -19,6 +19,8 @@ const styles = {
   cell: css({
     border: "solid 1px black",
     height: "100px",
+    width: "calc(100% / 7)",
+    padding: 12,
   }),
   date: css({
     variants: {
