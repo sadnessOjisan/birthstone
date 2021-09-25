@@ -10,9 +10,10 @@ const styles = {
     minHeight: "100vh",
   }),
   inner: css({
-    maxWidth: 1024,
+    maxWidth: 1200,
     margin: "0 auto",
     color: "#a9abbc",
+    padding: 24,
   }),
 };
 

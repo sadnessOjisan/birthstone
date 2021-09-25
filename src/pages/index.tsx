@@ -13,10 +13,15 @@ type Props = {
 };
 
 const styles = {
-  wrapper: css({
-    padding: "12px",
-    maxWidth: 1080,
-    margin: "auto",
+  buttonGroup: css({
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: 16,
+  }),
+  seletedDate: css({
+    fontSize: "2rem",
+    textAlign: "center",
+    marginBottom: 16,
   }),
 };
 
@@ -30,7 +35,7 @@ const Root: VFC<Props> = (props) => {
 
   return (
     <Layout>
-      <div className="button-group">
+      <div className={styles.buttonGroup()}>
         <Button skin="cool" onClick={handleClickPrevMonth}>
           先月
         </Button>
@@ -39,9 +44,9 @@ const Root: VFC<Props> = (props) => {
         </Button>
       </div>
       <div className="body">
-        <span>
+        <p className={styles.seletedDate()}>
           {selectedDate.getFullYear()}/{selectedDate.getMonth() + 1}
-        </span>
+        </p>
         <Calendar
           calendar={currentMonthLayout}
           now={selectedDate}

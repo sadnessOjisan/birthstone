@@ -18,6 +18,9 @@ const styles = {
     borderRadius: "0.8rem",
     transition: "all 0.3s",
     borderColor: "#151618",
+    fontFamily: `"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif`,
+    letterSpacing: "0.1rem",
     "&:hover": {
       transform: "scale(1.04)",
     },

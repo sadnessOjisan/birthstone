@@ -21,6 +21,7 @@ const styles = {
     height: "100px",
     width: "calc(100% / 7)",
     padding: 12,
+    fontSize: "1.4rem",
   }),
   date: css({
     variants: {
