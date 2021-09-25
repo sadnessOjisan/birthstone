@@ -1,13 +1,31 @@
 import { GetStaticProps } from "next";
-import { VFC } from "react";
+import { useState, VFC } from "react";
+import { Button } from "../components/button";
+import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
+import { Month } from "../type";
 
 type Props = {
   data: ResponseType;
 };
 
 const Root: VFC<Props> = (props) => {
-  return <div>hello {JSON.stringify(props.data)}!!</div>;
+  const { currentMonth, handleClickNextMonth, handleClickPrevMonth } =
+    useRootPage();
+
+  return (
+    <div>
+      <div className="button-group">
+        <Button skin="cool" onClick={handleClickPrevMonth}>
+          先月
+        </Button>
+        <Button skin="hot" onClick={handleClickNextMonth}>
+          次月
+        </Button>
+      </div>
+      <div className="body"></div>
+    </div>
+  );
 };
 
 export default Root;
