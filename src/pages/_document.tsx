@@ -30,7 +30,7 @@ class MyDocument extends Document {
             id="stitches"
             dangerouslySetInnerHTML={{ __html: stitches.getCssText() }}
           />
-          <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
+          <link rel="icon" type="image/png" href="/favicon.ico" sizes="16x16" />
         </Head>
         <body>
           <Main />

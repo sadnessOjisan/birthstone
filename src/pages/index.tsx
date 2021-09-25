@@ -6,14 +6,35 @@ import { Calendar } from "../components/calendar";
 import { DATA_ENDPOINT } from "../const";
 import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
+import { Layout } from "../components/layout";
 
 type Props = {
   data: ResponseType;
 };
 
 const styles = {
-  wrapper: css({
-    padding: "12px",
+  buttonGroup: css({
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: 16,
+  }),
+  seletedDate: css({
+    fontSize: "2rem",
+    textAlign: "center",
+    marginBottom: 16,
+  }),
+  title: css({
+    fontSize: "4.8rem",
+    color: "#ffffff",
+    textAlign: "center",
+    marginBottom: 24,
+  }),
+  text: css({
+    fontSize: "1.6rem",
+  }),
+  textArea: css({
+    marginBottom: 24,
+    textAlign: "center",
   }),
 };
 
@@ -26,8 +47,26 @@ const Root: VFC<Props> = (props) => {
   } = useRootPage(props.data);
 
   return (
-    <div className={styles.wrapper()}>
-      <div className="button-group">
+    <Layout>
+      <h1 className={styles.title()}>Birthstone</h1>
+      <div className={styles.textArea()}>
+        <p className={styles.text()}>
+          ソシャゲのリリース記念日が分かるサイト。周年記念に初めて石をたくさんもらってガチャを回そう。
+        </p>
+        <p className={styles.text()}>
+          birthstone は OSS
+          プロジェクトです。周年記念情報の提供やバグ修正、機能要望などのコントリビューションは
+          <a
+            href="https://github.com/sadnessOjisan/birthstone"
+            target="_blank"
+            style={{ color: "#ffffff", fontWeight: "bold" }}
+          >
+            こちら
+          </a>
+          からお願いします。
+        </p>
+      </div>
+      <div className={styles.buttonGroup()}>
         <Button skin="cool" onClick={handleClickPrevMonth}>
           先月
         </Button>
@@ -36,16 +75,16 @@ const Root: VFC<Props> = (props) => {
         </Button>
       </div>
       <div className="body">
-        <span>
+        <p className={styles.seletedDate()}>
           {selectedDate.getFullYear()}/{selectedDate.getMonth() + 1}
-        </span>
+        </p>
         <Calendar
           calendar={currentMonthLayout}
           now={selectedDate}
           data={props.data}
         />
       </div>
-    </div>
+    </Layout>
   );
 };
 
