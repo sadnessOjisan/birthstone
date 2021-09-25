@@ -15,19 +15,40 @@ const styles = {
   table: css({
     borderCollapse: "collapse",
     width: "100%",
+    background: "rgb(37, 40, 44)",
+    boxShadow: "rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset",
+    borderRadius: 4,
   }),
   cell: css({
-    border: "solid 1px black",
-    height: "100px",
+    height: "200px",
     width: "calc(100% / 7)",
     padding: 12,
     fontSize: "1.4rem",
+    verticalAlign: "top",
+    "&:hover": {
+      background: "rgba(255, 255, 255, 0.1)",
+      borderRadius: 4,
+    },
+  }),
+  header: css({
+    height: 60,
+    fontSize: 16,
+    fontWeight: "bold",
   }),
   date: css({
+    marginBottom: 12,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "rgba(0, 0, 0, 0.2)",
     variants: {
       now: {
         true: {
-          color: "red",
+          color: "#ffffff",
+          fontWeight: "bold",
         },
         false: {
           color: "inherit",
@@ -42,13 +63,13 @@ const styles = {
       textDecoration: "underline",
     },
   }),
-  item: css({ listStyle: "none" }),
+  item: css({ listStyle: "none", marginBottom: 8 }),
 };
 
 export const Calendar: VFC<Props> = (props) => {
   return (
     <table className={styles.table()}>
-      <thead>
+      <thead className={styles.header()}>
         <th>日</th>
         <th>月</th>
         <th>火</th>
@@ -62,22 +83,24 @@ export const Calendar: VFC<Props> = (props) => {
           <tr>
             {week.map((item) => (
               <td className={styles.cell()}>
-                <span
-                  className={styles.date({
-                    now:
-                      item.date !== undefined &&
-                      isSameDay(
-                        new Date(
-                          new Date(props.now).setDate(item.date.getDate())
-                        ),
-                        new Date()
-                      )
-                        ? "true"
-                        : "false",
-                  })}
-                >
-                  {item.date === undefined ? null : item.date.getDate()}
-                </span>
+                {item.date === undefined ? null : (
+                  <div
+                    className={styles.date({
+                      now:
+                        item.date !== undefined &&
+                        isSameDay(
+                          new Date(
+                            new Date(props.now).setDate(item.date.getDate())
+                          ),
+                          new Date()
+                        )
+                          ? "true"
+                          : "false",
+                    })}
+                  >
+                    {item.date.getDate()}
+                  </div>
+                )}
                 <ul>
                   {item.game.map((g) => (
                     <li className={styles.item()}>

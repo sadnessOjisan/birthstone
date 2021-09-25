@@ -23,6 +23,19 @@ const styles = {
     textAlign: "center",
     marginBottom: 16,
   }),
+  title: css({
+    fontSize: "4.8rem",
+    color: "#ffffff",
+    textAlign: "center",
+    marginBottom: 24,
+  }),
+  text: css({
+    fontSize: "1.6rem",
+  }),
+  textArea: css({
+    marginBottom: 24,
+    textAlign: "center",
+  }),
 };
 
 const Root: VFC<Props> = (props) => {
@@ -35,12 +48,23 @@ const Root: VFC<Props> = (props) => {
 
   return (
     <Layout>
-      <div>
-        birthstone は OSS プロジェクトです。コントリビューションは
-        <a href="https://github.com/sadnessOjisan/birthstone" target="_blank">
-          こちら
-        </a>
-        から。
+      <h1 className={styles.title()}>Birthstone</h1>
+      <div className={styles.textArea()}>
+        <p className={styles.text()}>
+          ソシャゲのリリース記念日が分かるサイト。周年記念に初めて石をたくさんもらってガチャを回そう。
+        </p>
+        <p className={styles.text()}>
+          birthstone は OSS
+          プロジェクトです。周年記念情報の提供やバグ修正、機能要望などのコントリビューションは
+          <a
+            href="https://github.com/sadnessOjisan/birthstone"
+            target="_blank"
+            style={{ color: "#ffffff", fontWeight: "bold" }}
+          >
+            こちら
+          </a>
+          からお願いします。
+        </p>
       </div>
       <div className={styles.buttonGroup()}>
         <Button skin="cool" onClick={handleClickPrevMonth}>
