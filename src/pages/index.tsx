@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
 import { useState, VFC } from "react";
 import { Button } from "../components/button";
+import { Calendar } from "../components/calendar";
 import { DATA_ENDPOINT } from "../const";
 import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
@@ -27,7 +28,9 @@ const Root: VFC<Props> = (props) => {
           次月
         </Button>
       </div>
-      <div className="body"></div>
+      <div className="body">
+        <Calendar calendar={currentMonthLayout} />
+      </div>
     </div>
   );
 };

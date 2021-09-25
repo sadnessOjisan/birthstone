@@ -6,7 +6,7 @@ type Props = {
   calendar: WeekType[];
 };
 
-export const Carrendar: VFC<Props> = (props) => {
+export const Calendar: VFC<Props> = (props) => {
   return (
     <div>
       {props.calendar.map((week) => (

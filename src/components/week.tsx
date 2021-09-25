@@ -5,9 +5,10 @@ import { Day } from "./day";
 type Props = {
   week: WeekType;
 };
+
 export const Week: VFC<Props> = (props) => {
   return (
-    <div>
+    <div key={JSON.stringify(props.week)}>
       {props.week.map((day) => (
         <Day day={day} />
       ))}

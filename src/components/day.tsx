@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const Day: VFC<Props> = (props) => {
-  return <div>{props.day}</div>;
+  return <div key={props.day}>{props.day}</div>;
 };
