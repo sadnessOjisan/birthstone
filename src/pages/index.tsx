@@ -1,5 +1,9 @@
 import { GetStaticProps } from "next";
-import { VFC } from "react";
+import { useState, VFC } from "react";
+import { Button } from "../components/button";
+import { Calendar } from "../components/calendar";
+import { DATA_ENDPOINT } from "../const";
+import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
 
 type Props = {
@@ -7,15 +11,34 @@ type Props = {
 };
 
 const Root: VFC<Props> = (props) => {
-  return <div>hello {JSON.stringify(props.data)}!!</div>;
+  const {
+    now,
+    handleClickNextMonth,
+    handleClickPrevMonth,
+    currentMonthLayout,
+  } = useRootPage();
+
+  return (
+    <div>
+      <div className="button-group">
+        <Button skin="cool" onClick={handleClickPrevMonth}>
+          先月
+        </Button>
+        <Button skin="hot" onClick={handleClickNextMonth}>
+          次月
+        </Button>
+      </div>
+      <div className="body">
+        <Calendar calendar={currentMonthLayout} />
+      </div>
+    </div>
+  );
 };
 
 export default Root;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const res = await fetch(
-    "https://us-central1-birthstone-b73d7.cloudfunctions.net/getData"
-  );
+  const res = await fetch(DATA_ENDPOINT);
 
   const data = await res.json();
 
