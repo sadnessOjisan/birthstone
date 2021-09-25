@@ -6,6 +6,7 @@ import { Calendar } from "../components/calendar";
 import { DATA_ENDPOINT } from "../const";
 import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
+import { Layout } from "../components/layout";
 
 type Props = {
   data: ResponseType;
@@ -14,6 +15,8 @@ type Props = {
 const styles = {
   wrapper: css({
     padding: "12px",
+    maxWidth: 1080,
+    margin: "auto",
   }),
 };
 
@@ -26,7 +29,7 @@ const Root: VFC<Props> = (props) => {
   } = useRootPage(props.data);
 
   return (
-    <div className={styles.wrapper()}>
+    <Layout>
       <div className="button-group">
         <Button skin="cool" onClick={handleClickPrevMonth}>
           先月
@@ -45,7 +48,7 @@ const Root: VFC<Props> = (props) => {
           data={props.data}
         />
       </div>
-    </div>
+    </Layout>
   );
 };
 

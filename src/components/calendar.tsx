@@ -27,10 +27,13 @@ const styles = {
           color: "red",
         },
         false: {
-          color: "initial",
+          color: "inherit",
         },
       },
     },
+  }),
+  link: css({
+    color: "#a9abbc",
   }),
 };
 
@@ -70,7 +73,9 @@ export const Calendar: VFC<Props> = (props) => {
                 <ul>
                   {item.game.map((g) => (
                     <li>
-                      <a href={g.url}>{g.title}</a>
+                      <a href={g.url} className={styles.link()}>
+                        {g.title}
+                      </a>
                     </li>
                   ))}
                 </ul>
