@@ -1,17 +1,21 @@
 import { GetStaticProps } from "next";
 import { useState, VFC } from "react";
 import { Button } from "../components/button";
+import { DATA_ENDPOINT } from "../const";
 import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
-import { Month } from "../type";
 
 type Props = {
   data: ResponseType;
 };
 
 const Root: VFC<Props> = (props) => {
-  const { currentMonth, handleClickNextMonth, handleClickPrevMonth } =
-    useRootPage();
+  const {
+    now,
+    handleClickNextMonth,
+    handleClickPrevMonth,
+    currentMonthLayout,
+  } = useRootPage();
 
   return (
     <div>
@@ -31,9 +35,7 @@ const Root: VFC<Props> = (props) => {
 export default Root;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const res = await fetch(
-    "https://us-central1-birthstone-b73d7.cloudfunctions.net/getData"
-  );
+  const res = await fetch(DATA_ENDPOINT);
 
   const data = await res.json();
 

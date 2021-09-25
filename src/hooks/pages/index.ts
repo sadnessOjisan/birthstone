@@ -1,26 +1,26 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import calendarize from "calendarize";
 import { Month } from "../../type";
 
 export const useRootPage = () => {
-  const [currentMonth, updateMonth] = useState<Month>(1);
+  const [now, updateDate] = useState<Date>(new Date());
 
   const handleClickNextMonth = () => {
-    if (currentMonth === 12) {
-      updateMonth(1);
-    } else {
-      const nextMonth = (currentMonth + 1) as Month;
-      updateMonth(nextMonth);
-    }
+    const nextMonth = new Date(now.setMonth(now.getMonth() + 1));
+    updateDate(nextMonth);
   };
 
   const handleClickPrevMonth = () => {
-    if (currentMonth === 1) {
-      updateMonth(12);
-    } else {
-      const prevMonth = (currentMonth - 1) as Month;
-      updateMonth(prevMonth);
-    }
+    const prevMonth = new Date(now.setMonth(now.getMonth() + 1));
+    updateDate(prevMonth);
   };
 
-  return { currentMonth, handleClickNextMonth, handleClickPrevMonth };
+  const currentMonthLayout = useMemo(() => calendarize(now), [now]);
+
+  return {
+    now,
+    handleClickNextMonth,
+    handleClickPrevMonth,
+    currentMonthLayout,
+  };
 };
