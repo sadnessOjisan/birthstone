@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import calendarize from "calendarize";
 import { ResponseType } from "../../schema";
-import { isSameDay } from "../../util";
+import { isSameMonthDay } from "../../util";
 import { Calendar, Game } from "../../type";
 
 export const useRootPage = (data: ResponseType) => {
@@ -24,11 +24,11 @@ export const useRootPage = (data: ResponseType) => {
     const layout = calendarize(selectedDate);
     const calendar: Calendar = layout.map((week) =>
       week.map((date) => {
-        if (date === 0) return { date: undefined, game: undefined };
+        if (date === 0) return { date: undefined, game: [] };
         const targetDate = new Date(new Date(selectedDate).setDate(date));
-        const game: Game = data.find((d) => {
+        const game: Game[] = data.filter((d) => {
           const publishDate = new Date(d.published);
-          return isSameDay(publishDate, targetDate);
+          return isSameMonthDay(publishDate, targetDate);
         });
         return { date: targetDate, game };
       })

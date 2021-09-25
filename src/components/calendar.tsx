@@ -67,7 +67,13 @@ export const Calendar: VFC<Props> = (props) => {
                 >
                   {item.date === undefined ? null : item.date.getDate()}
                 </span>
-                <span>{item.game?.title}</span>
+                <ul>
+                  {item.game.map((g) => (
+                    <li>
+                      <a href={g.url}>{g.title}</a>
+                    </li>
+                  ))}
+                </ul>
               </td>
             ))}
           </tr>
