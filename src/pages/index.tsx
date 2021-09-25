@@ -35,6 +35,13 @@ const Root: VFC<Props> = (props) => {
 
   return (
     <Layout>
+      <div>
+        birthstone は OSS プロジェクトです。コントリビューションは
+        <a href="https://github.com/sadnessOjisan/birthstone" target="_blank">
+          こちら
+        </a>
+        から。
+      </div>
       <div className={styles.buttonGroup()}>
         <Button skin="cool" onClick={handleClickPrevMonth}>
           先月

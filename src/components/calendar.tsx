@@ -37,7 +37,12 @@ const styles = {
   }),
   link: css({
     color: "#a9abbc",
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline",
+    },
   }),
+  item: css({ listStyle: "none" }),
 };
 
 export const Calendar: VFC<Props> = (props) => {
@@ -75,7 +80,7 @@ export const Calendar: VFC<Props> = (props) => {
                 </span>
                 <ul>
                   {item.game.map((g) => (
-                    <li>
+                    <li className={styles.item()}>
                       <a href={g.url} className={styles.link()}>
                         {g.title}
                       </a>
