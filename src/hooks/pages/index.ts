@@ -1,24 +1,29 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import calendarize from "calendarize";
-import { Month } from "../../type";
 
 export const useRootPage = () => {
-  const [now, updateDate] = useState<Date>(new Date());
+  const [selectedDate, updateDate] = useState<Date>(new Date());
 
-  const handleClickNextMonth = () => {
-    const nextMonth = new Date(now.setMonth(now.getMonth() + 1));
+  const handleClickNextMonth = useCallback(() => {
+    const nextMonth = new Date(
+      new Date(selectedDate).setMonth(selectedDate.getMonth() + 1)
+    );
     updateDate(nextMonth);
-  };
+  }, [selectedDate]);
 
-  const handleClickPrevMonth = () => {
-    const prevMonth = new Date(now.setMonth(now.getMonth() + 1));
-    updateDate(prevMonth);
-  };
+  const handleClickPrevMonth = useCallback(() => {
+    const prevMonth = selectedDate.getMonth() - 1;
+    const prevDate = new Date(new Date(selectedDate).setMonth(prevMonth));
+    updateDate(prevDate);
+  }, [selectedDate]);
 
-  const currentMonthLayout = useMemo(() => calendarize(now), [now]);
+  const currentMonthLayout = useMemo(
+    () => calendarize(new Date(selectedDate)),
+    [selectedDate]
+  );
 
   return {
-    now,
+    selectedDate,
     handleClickNextMonth,
     handleClickPrevMonth,
     currentMonthLayout,

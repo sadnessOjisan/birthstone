@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import { useState, VFC } from "react";
+import { css } from "@stitches/react";
 import { Button } from "../components/button";
 import { Calendar } from "../components/calendar";
 import { DATA_ENDPOINT } from "../const";
@@ -10,16 +11,22 @@ type Props = {
   data: ResponseType;
 };
 
+const styles = {
+  wrapper: css({
+    padding: "12px",
+  }),
+};
+
 const Root: VFC<Props> = (props) => {
   const {
-    now,
+    selectedDate,
     handleClickNextMonth,
     handleClickPrevMonth,
     currentMonthLayout,
   } = useRootPage();
 
   return (
-    <div>
+    <div className={styles.wrapper()}>
       <div className="button-group">
         <Button skin="cool" onClick={handleClickPrevMonth}>
           先月
@@ -29,7 +36,10 @@ const Root: VFC<Props> = (props) => {
         </Button>
       </div>
       <div className="body">
-        <Calendar calendar={currentMonthLayout} />
+        <span>
+          {selectedDate.getFullYear()}/{selectedDate.getMonth() + 1}
+        </span>
+        <Calendar calendar={currentMonthLayout} now={selectedDate} />
       </div>
     </div>
   );
