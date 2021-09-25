@@ -1,11 +1,14 @@
 import { css } from "@stitches/react";
 import { Week as WeekType } from "calendarize";
 import { VFC } from "react";
+import { ResponseType } from "../schema";
+import { Calendar as CalendarType } from "../type";
 import { isSameDay } from "../util";
 
 type Props = {
-  calendar: WeekType[];
+  calendar: CalendarType;
   now: Date;
+  data: ResponseType;
 };
 
 const styles = {
@@ -46,20 +49,25 @@ export const Calendar: VFC<Props> = (props) => {
       <tbody>
         {props.calendar.map((week) => (
           <tr>
-            {week.map((date) => (
+            {week.map((item) => (
               <td className={styles.cell()}>
                 <span
                   className={styles.date({
-                    now: isSameDay(
-                      new Date(new Date(props.now).setDate(date)),
-                      new Date()
-                    )
-                      ? "true"
-                      : "false",
+                    now:
+                      item.date !== undefined &&
+                      isSameDay(
+                        new Date(
+                          new Date(props.now).setDate(item.date.getDate())
+                        ),
+                        new Date()
+                      )
+                        ? "true"
+                        : "false",
                   })}
                 >
-                  {date === 0 ? null : date}
+                  {item.date === undefined ? null : item.date.getDate()}
                 </span>
+                <span>{item.game?.title}</span>
               </td>
             ))}
           </tr>

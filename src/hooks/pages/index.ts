@@ -1,7 +1,10 @@
 import { useCallback, useMemo, useState } from "react";
 import calendarize from "calendarize";
+import { ResponseType } from "../../schema";
+import { isSameDay } from "../../util";
+import { Calendar, Game } from "../../type";
 
-export const useRootPage = () => {
+export const useRootPage = (data: ResponseType) => {
   const [selectedDate, updateDate] = useState<Date>(new Date());
 
   const handleClickNextMonth = useCallback(() => {
@@ -17,10 +20,21 @@ export const useRootPage = () => {
     updateDate(prevDate);
   }, [selectedDate]);
 
-  const currentMonthLayout = useMemo(
-    () => calendarize(new Date(selectedDate)),
-    [selectedDate]
-  );
+  const currentMonthLayout = useMemo(() => {
+    const layout = calendarize(selectedDate);
+    const calendar: Calendar = layout.map((week) =>
+      week.map((date) => {
+        if (date === 0) return { date: undefined, game: undefined };
+        const targetDate = new Date(new Date(selectedDate).setDate(date));
+        const game: Game = data.find((d) => {
+          const publishDate = new Date(d.published);
+          return isSameDay(publishDate, targetDate);
+        });
+        return { date: targetDate, game };
+      })
+    );
+    return calendar;
+  }, [selectedDate]);
 
   return {
     selectedDate,

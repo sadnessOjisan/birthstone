@@ -23,7 +23,7 @@ const Root: VFC<Props> = (props) => {
     handleClickNextMonth,
     handleClickPrevMonth,
     currentMonthLayout,
-  } = useRootPage();
+  } = useRootPage(props.data);
 
   return (
     <div className={styles.wrapper()}>
@@ -39,7 +39,11 @@ const Root: VFC<Props> = (props) => {
         <span>
           {selectedDate.getFullYear()}/{selectedDate.getMonth() + 1}
         </span>
-        <Calendar calendar={currentMonthLayout} now={selectedDate} />
+        <Calendar
+          calendar={currentMonthLayout}
+          now={selectedDate}
+          data={props.data}
+        />
       </div>
     </div>
   );
