@@ -9,3 +9,4 @@ const item = z.object({
 export const schema = z.array(item);
 
 export type ResponseType = z.infer<typeof schema>;
+export type ItemType = z.infer<typeof item>;
