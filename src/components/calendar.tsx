@@ -1,5 +1,4 @@
 import { css } from "@stitches/react";
-import { Week as WeekType } from "calendarize";
 import { VFC } from "react";
 import { ResponseType } from "../schema";
 import { Calendar as CalendarType } from "../type";
@@ -88,12 +87,7 @@ export const Calendar: VFC<Props> = (props) => {
                     className={styles.date({
                       now:
                         item.date !== undefined &&
-                        isSameDay(
-                          new Date(
-                            new Date(props.now).setDate(item.date.getDate())
-                          ),
-                          new Date()
-                        )
+                        isSameDay(new Date(), item.date)
                           ? "true"
                           : "false",
                     })}
@@ -104,7 +98,7 @@ export const Calendar: VFC<Props> = (props) => {
                 <ul>
                   {item.game.map((g) => (
                     <li className={styles.item()}>
-                      <a href={g.url} className={styles.link()}>
+                      <a href={g.url} className={styles.link()} target="_blank">
                         {g.title}
                       </a>
                     </li>

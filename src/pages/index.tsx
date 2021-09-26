@@ -1,12 +1,13 @@
 import { GetStaticProps } from "next";
 import { useState, VFC } from "react";
-import { css } from "@stitches/react";
 import { Button } from "../components/button";
 import { Calendar } from "../components/calendar";
 import { DATA_ENDPOINT } from "../const";
 import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
 import { Layout } from "../components/layout";
+import { css } from "../util/stitches.config";
+import { MobileCalendar } from "../components/mobile-calendar";
 
 type Props = {
   data: ResponseType;
@@ -35,6 +36,16 @@ const styles = {
   textArea: css({
     marginBottom: 24,
     textAlign: "center",
+  }),
+  onlyPc: css({
+    "@exceptForPc": {
+      display: "none",
+    },
+  }),
+  onlySp: css({
+    "@onlyPc": {
+      display: "none",
+    },
   }),
 };
 
@@ -78,11 +89,20 @@ const Root: VFC<Props> = (props) => {
         <p className={styles.seletedDate()}>
           {selectedDate.getFullYear()}/{selectedDate.getMonth() + 1}
         </p>
-        <Calendar
-          calendar={currentMonthLayout}
-          now={selectedDate}
-          data={props.data}
-        />
+        <div className={styles.onlyPc()}>
+          <Calendar
+            calendar={currentMonthLayout}
+            now={selectedDate}
+            data={props.data}
+          />
+        </div>
+        <div className={styles.onlySp()}>
+          <MobileCalendar
+            calendar={currentMonthLayout}
+            now={selectedDate}
+            data={props.data}
+          />
+        </div>
       </div>
     </Layout>
   );
