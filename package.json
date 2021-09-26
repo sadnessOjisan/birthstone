@@ -1,0 +1,32 @@
+{
+  "name": "birthstone",
+  "version": "1.0.0",
+  "description": "ソシャゲの周年記念一覧。この日付近に始めるとたくさん石を貰えるよ",
+  "main": "index.js",
+  "scripts": {
+    "build": "next build && next export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sadnessOjisan/birthstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sadnessOjisan/birthstone/issues"
+  },
+  "homepage": "https://github.com/sadnessOjisan/birthstone#readme",
+  "devDependencies": {
+    "@types/react": "^17.0.24",
+    "firebase-tools": "^9.18.0",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@stitches/react": "^1.2.1",
+    "calendarize": "^1.1.1",
+    "next": "^11.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "zod": "^3.8.2"
+  }
+}
