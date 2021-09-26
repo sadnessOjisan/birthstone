@@ -1,6 +1,7 @@
 import { VFC } from "react";
 import { ResponseType } from "../schema";
 import { Calendar as CalendarType } from "../type";
+import { isSameDay } from "../util";
 import { css } from "../util/stitches.config";
 
 type Props = {
@@ -30,6 +31,17 @@ const styles = {
   }),
   dateBlock: css({
     marginRight: 24,
+    variants: {
+      now: {
+        true: {
+          color: "#ffffff",
+          fontWeight: "bold",
+        },
+        false: {
+          color: "inherit",
+        },
+      },
+    },
   }),
   link: css({
     color: "#a9abbc",
@@ -48,7 +60,11 @@ export const MobileCalendar: VFC<Props> = (props) => {
         .filter((d) => d.date !== undefined)
         .map((date) => (
           <div className={styles.item()}>
-            <div className={styles.dateBlock()}>
+            <div
+              className={styles.dateBlock({
+                now: isSameDay(new Date(), date.date) ? "true" : "false",
+              })}
+            >
               {date.date.getMonth() + 1}/{date.date.getDate()}
             </div>
             <ul>
