@@ -70,7 +70,7 @@ export const MobileCalendar: VFC<Props> = (props) => {
             <ul>
               {date.game.map((g) => (
                 <li className={styles.gameListItem()}>
-                  <a href={g.url} className={styles.link()}>
+                  <a href={g.url} className={styles.link()} target="_blank">
                     {g.title}
                   </a>
                 </li>

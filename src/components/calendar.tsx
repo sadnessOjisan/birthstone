@@ -98,7 +98,7 @@ export const Calendar: VFC<Props> = (props) => {
                 <ul>
                   {item.game.map((g) => (
                     <li className={styles.item()}>
-                      <a href={g.url} className={styles.link()}>
+                      <a href={g.url} className={styles.link()} target="_blank">
                         {g.title}
                       </a>
                     </li>
