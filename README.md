@@ -1,4 +1,4 @@
-# [birthstone](https://birthstone.web.app/)
+# [birthstone](https://birthstone.ojisan.dev)
 
 ソシャゲの周年記念一覧。この日付近に始めるとたくさん石を貰えるよ
 
