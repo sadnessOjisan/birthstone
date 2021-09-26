@@ -1,7 +1,6 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import { createStitches } from "@stitches/react";
-
-const stitches = createStitches();
+import { getCssText } from "../util/stitches.config";
 
 const reset = ` *,
 *:after,
@@ -28,7 +27,7 @@ class MyDocument extends Document {
           <style>{reset}</style>
           <style
             id="stitches"
-            dangerouslySetInnerHTML={{ __html: stitches.getCssText() }}
+            dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
           <link rel="icon" type="image/png" href="/favicon.ico" sizes="16x16" />
         </Head>
