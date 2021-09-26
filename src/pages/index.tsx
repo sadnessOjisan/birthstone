@@ -7,6 +7,7 @@ import { useRootPage } from "../hooks/pages";
 import { ResponseType, schema } from "../schema";
 import { Layout } from "../components/layout";
 import { css } from "../util/stitches.config";
+import { MobileCalendar } from "../components/mobile-calendar";
 
 type Props = {
   data: ResponseType;
@@ -95,7 +96,13 @@ const Root: VFC<Props> = (props) => {
             data={props.data}
           />
         </div>
-        <div className={styles.onlySp()}>aa</div>
+        <div className={styles.onlySp()}>
+          <MobileCalendar
+            calendar={currentMonthLayout}
+            now={selectedDate}
+            data={props.data}
+          />
+        </div>
       </div>
     </Layout>
   );
