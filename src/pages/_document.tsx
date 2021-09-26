@@ -30,6 +30,25 @@ class MyDocument extends Document {
             dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
           <link rel="icon" type="image/png" href="/favicon.ico" sizes="16x16" />
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta property="og:site_name" content="birthstone" />
+          <meta
+            property="og:image"
+            content="https://birthstone.web.app/ogp.png"
+          />
+          <meta property="og:url" content="https://birthstone.web.app" />
+          <meta property="og:title" content="birthstone" />
+          <meta name="twitter:creator" content="@sadnessOjisan" />
+          <meta
+            property="og:description"
+            content="ソシャゲの過去リリース日を一覧できるカレンダーです。周年アイテムをたくさん貰って、たくさんガチャを引いて、たくさんリセマラしよう。"
+          />
+          <meta name="twitter:card" content="summary" />
+          <link rel="manifest" href="manifest.json" />
         </Head>
         <body>
           <Main />
