@@ -1,12 +1,15 @@
 ## ゲーム情報の追加
 
-`src/data.yaml` に yaml 形式で追加してください。
+[/functions/src/data.ts](https://github.com/sadnessOjisan/birthstone/blob/main/functions/src/data.ts) に json 形式で追加してください。
 
-```yaml
-# example
-- title: ブルーアーカイブ -Blue Archive-
-  published: "2021-02-04"
-  url: https://bluearchive.jp/
+```json
+[
+  {
+    "title": "プリンセスコネクト！Re:Dive",
+    "published": "2018-02-15",
+    "url": "https://priconne-redive.jp/"
+  }
+]
 ```
 
 ## 機能要望
@@ -19,18 +22,24 @@ Issue からお願いします。
 
 ## ソースコード本体への修正
 
-yew + wasmpack で実装されています。
-ローカルで動かす場合は [こちら](https://yew.rs/docs/en/getting-started/build-a-sample-app) の環境構築を行ってください。
+アプリケーションは NextJS, データの管理や PUSH 通知は firebase hosting で管理されています。
 
-環境を構築すると、
+### App
 
-```sh
-$ wasm-pack build --target web --out-name wasm --out-dir ./static
+```
+npm i
 
-# serve server. なんでも良い
-$ miniserve ./static --index index.html
+npx next dev
 ```
 
-で立ち上がります。
+### Functions
 
-CI は GitHub Actions で行っており、main ブランチへの merge で Firebase へホスティング、それ以外のブランチへの push でコンパイルを実行しています。
+```
+cd functions
+
+npm i
+```
+
+### デプロイ
+
+Github Actions 経由で行っています。
