@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         "BL6X4jOgnYPvW-mnbBWsJc_sV9D55AAKAXbP83P9KQqyNSX6gupSPugyVLeFdF1GXB1vQKLbAsQOHWka__mGwEE",
     })
       .then((currentToken) => {
+        console.log("my token is ", currentToken);
         if (currentToken) {
           // Send the token to your server and update the UI if necessary
           // ...
