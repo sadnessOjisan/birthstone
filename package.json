@@ -24,6 +24,8 @@
   "dependencies": {
     "@stitches/react": "^1.2.1",
     "calendarize": "^1.1.1",
+    "firebase": "^9.1.1",
+    "localforage": "^1.10.0",
     "next": "^11.1.2",
     "next-pwa": "^5.3.1",
     "react": "^17.0.2",
