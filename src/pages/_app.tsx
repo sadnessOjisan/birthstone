@@ -1,8 +1,15 @@
 import { getMessaging, onMessage, getToken } from "firebase/messaging";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+} from "firebase/firestore/lite";
 import { useEffect } from "react";
 import type { AppProps /*, AppContext */ } from "next/app";
 import { getApp, initializeApp } from "@firebase/app";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 const firebaseApp =
   // getApp() ??
@@ -19,27 +26,33 @@ const db = getFirestore(firebaseApp);
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    const messaging = getMessaging(firebaseApp);
-    getToken(messaging, {
-      vapidKey:
-        "BL6X4jOgnYPvW-mnbBWsJc_sV9D55AAKAXbP83P9KQqyNSX6gupSPugyVLeFdF1GXB1vQKLbAsQOHWka__mGwEE",
-    })
-      .then((currentToken) => {
-        console.log("my token is ", currentToken);
-        if (currentToken) {
-          // Send the token to your server and update the UI if necessary
-          // ...
-        } else {
-          // Show permission request UI
-          console.log(
-            "No registration token available. Request permission to generate one."
-          );
-          // ...
-        }
+    const auth = getAuth();
+    signInAnonymously(auth).then((user) => {
+      const uid = user.user.uid;
+      getToken(messaging, {
+        vapidKey:
+          "BL6X4jOgnYPvW-mnbBWsJc_sV9D55AAKAXbP83P9KQqyNSX6gupSPugyVLeFdF1GXB1vQKLbAsQOHWka__mGwEE",
       })
-      .catch((e) => {
-        console.error(e);
-      });
+        .then((currentToken) => {
+          console.log("my token is ", currentToken);
+          if (currentToken) {
+            setDoc(doc(db, "tokens", uid), {
+              token: currentToken,
+            });
+          } else {
+            // Show permission request UI
+            console.log(
+              "No registration token available. Request permission to generate one."
+            );
+            // ...
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    });
+    const messaging = getMessaging(firebaseApp);
+
     onMessage(messaging, (payload) => {
       console.log("Message received. ", payload);
       // ...
