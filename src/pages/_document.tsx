@@ -35,7 +35,7 @@ class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <meta property="og:site_name" content="birthstone" />
+          <meta property="og:site_name" content="Birthstone" />
           <meta
             property="og:image"
             content="https://birthstone.web.app/ogp.png"
@@ -49,6 +49,7 @@ class MyDocument extends Document {
           />
           <meta name="twitter:card" content="summary" />
           <link rel="manifest" href="manifest.json" />
+          <title>Birthstone</title>
         </Head>
         <body>
           <Main />
