@@ -36,7 +36,7 @@ export const sendNotificationOfTodayGame = functions.pubsub
     }
     admin
       .firestore()
-      .collection("token")
+      .collection("tokens")
       .get()
       .then((snapshot) => {
         const tokens = snapshot.docs.map((d) => {
