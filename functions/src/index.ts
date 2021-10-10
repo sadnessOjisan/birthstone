@@ -47,11 +47,13 @@ export const sendNotificationOfTodayGame = functions.pubsub
           notification: {
             title: "本日周年のゲームがあります。",
             body: `${todayIsBirthdayGames[0].title} が周年記念です。詳しくは birthstone で確かめましょう。`,
-            imageUrl: "https://birthstone.ojisan.dev/favicon.ico",
           },
           webpush: {
             fcmOptions: {
               link: "https://birthstone.ojisan.dev/",
+            },
+            notification: {
+              badge: "https://birthstone.ojisan.dev/favicon.ico",
             },
           },
           token,
