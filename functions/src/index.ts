@@ -1,5 +1,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { messaging } from "firebase-admin/lib/messaging";
 import { data } from "./data";
 
 admin.initializeApp();
@@ -42,10 +43,16 @@ export const sendNotificationOfTodayGame = functions.pubsub
         const tokens = snapshot.docs.map((d) => {
           return d.data().token as string;
         });
-        const messages = tokens.map((token) => ({
+        const messages: messaging.Message[] = tokens.map((token) => ({
           notification: {
             title: "本日周年のゲームがあります。",
             body: `${todayIsBirthdayGames[0].title} が周年記念です。詳しくは birthstone で確かめましょう。`,
+            imageUrl: "https://birthstone.ojisan.dev/favicon.ico",
+          },
+          webpush: {
+            fcmOptions: {
+              link: "https://birthstone.ojisan.dev/",
+            },
           },
           token,
         }));
