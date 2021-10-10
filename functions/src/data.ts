@@ -225,4 +225,14 @@ export const data = [
     published: "2020-03-18",
     url: "https://twisted-wonderland.aniplex.co.jp/",
   },
+  {
+    title: "test",
+    published: "2020-10-09",
+    url: "/",
+  },
+  {
+    title: "test",
+    published: "2020-10-10",
+    url: "/",
+  },
 ];
