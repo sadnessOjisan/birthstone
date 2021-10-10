@@ -2,6 +2,8 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { data } from "./data";
 
+admin.initializeApp();
+
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
