@@ -42,16 +42,17 @@ export const sendNotificationOfTodayGame = functions.pubsub
         const tokens = snapshot.docs.map((d) => {
           return d.data().token as string;
         });
-        const message = {
-          data: {
-            title: todayIsBirthdayGames[0].title,
+        const messages = tokens.map((token) => ({
+          notification: {
+            title: "本日周年のゲームがあります。",
+            body: `${todayIsBirthdayGames[0].title} が周年記念です。詳しくは birthstone で確かめましょう。`,
           },
-          tokens: tokens,
-        };
+          token,
+        }));
 
         admin
           .messaging()
-          .sendMulticast(message)
+          .sendAll(messages)
           .then((response) => {
             console.log(
               response.successCount + " messages were sent successfully"
