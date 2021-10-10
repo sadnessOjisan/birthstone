@@ -18,7 +18,7 @@ export const getData = functions.https.onRequest((request, response) => {
 });
 
 export const sendNotificationOfTodayGame = functions.pubsub
-  .schedule("every 1 minutes")
+  .schedule("every day 00:00")
   .onRun((context) => {
     const today = new Date();
     const todayIsBirthdayGames = data.filter((item) => {
